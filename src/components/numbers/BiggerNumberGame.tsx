@@ -4,7 +4,7 @@ import { soundEffects } from '../../utils/soundEffects';
 import { speechEngine } from '../../utils/speech';
 import { ConfettiCanvas } from '../common/ConfettiCanvas';
 import { TikoMascot } from '../common/TikoMascot';
-import { Sparkles, RefreshCw, Volume2, Scale } from 'lucide-react';
+import { Sparkles, RefreshCw, Volume2 } from 'lucide-react';
 
 export const BiggerNumberGame: React.FC = () => {
   const { addStars } = useApp();
