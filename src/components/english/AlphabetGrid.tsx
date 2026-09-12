@@ -3,7 +3,7 @@ import { EnglishLetter } from '../../types';
 import { useApp } from '../../context/AppContext';
 import { soundEffects } from '../../utils/soundEffects';
 import { speechEngine } from '../../utils/speech';
-import { Volume2, CheckCircle2, Sparkles } from 'lucide-react';
+import { Volume2, CheckCircle2 } from 'lucide-react';
 
 interface AlphabetGridProps {
   letters: EnglishLetter[];
@@ -23,7 +23,7 @@ export const AlphabetGrid: React.FC<AlphabetGridProps> = ({ letters, onSelectLet
   const { progress, markEnglishLearned } = useApp();
   const [activeLetterId, setActiveLetterId] = useState<string | null>(null);
 
-  const handleCardClick = (index: number, letter: EnglishLetter) => {
+  const handleCardClick = (letter: EnglishLetter) => {
     setActiveLetterId(letter.id);
     soundEffects.playPop();
     markEnglishLearned(letter.id);
@@ -46,7 +46,7 @@ export const AlphabetGrid: React.FC<AlphabetGridProps> = ({ letters, onSelectLet
         return (
           <div
             key={item.id}
-            onClick={() => handleCardClick(index, item)}
+            onClick={() => handleCardClick(item)}
             className={`toy-block ${theme.blockClass} p-4 sm:p-5 flex flex-col items-center justify-between cursor-pointer text-center group ${
               isActive ? 'scale-110 -rotate-2 ring-6 ring-yellow-300' : ''
             }`}

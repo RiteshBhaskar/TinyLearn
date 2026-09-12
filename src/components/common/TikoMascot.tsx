@@ -1,37 +1,55 @@
 import React, { useState } from 'react';
 import { speechEngine } from '../../utils/speech';
 import { soundEffects } from '../../utils/soundEffects';
-import { Volume2, Sparkles, Heart } from 'lucide-react';
+import { Volume2 } from 'lucide-react';
 
-export type TikoEmotion = 'greeting' | 'cheering' | 'correct' | 'encourage' | 'thinking' | 'idle';
+export type TikoEmotion = 'greeting' | 'cheering' | 'correct' | 'encourage' | 'thinking' | 'idle' | 'happy' | 'celebrate';
 
 interface TikoMascotProps {
   message?: string;
+  speechText?: string;
   emotion?: TikoEmotion;
+  mood?: TikoEmotion;
   size?: 'sm' | 'md' | 'lg';
   showBubble?: boolean;
   className?: string;
   lang?: 'en' | 'hi';
+  onSpeak?: () => void;
 }
 
 export const TikoMascot: React.FC<TikoMascotProps> = ({
-  message = "Hi! I'm Tiko! Let's learn & play together! 🧸",
-  emotion = 'greeting',
+  message,
+  speechText,
+  emotion,
+  mood,
   size = 'md',
   showBubble = true,
   className = '',
-  lang = 'en'
+  lang = 'en',
+  onSpeak
 }) => {
   const [isWaving, setIsWaving] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const displayMessage = speechText || message || "Hi! I'm Tiko! Let's learn & play together! 🧸";
+  const activeEmotion: TikoEmotion = mood || emotion || 'greeting';
 
   const handleTikoClick = () => {
     soundEffects.playPop();
     setIsWaving(true);
     setIsSpeaking(true);
 
+    if (onSpeak) {
+      onSpeak();
+      setTimeout(() => {
+        setIsSpeaking(false);
+        setIsWaving(false);
+      }, 1000);
+      return;
+    }
+
     speechEngine.speak(
-      message.replace(/[^\w\s\u0900-\u097F]/gi, ''),
+      displayMessage.replace(/[^\w\s\u0900-\u097F]/gi, ''),
       lang,
       () => {
         setIsSpeaking(false);
@@ -40,14 +58,18 @@ export const TikoMascot: React.FC<TikoMascotProps> = ({
     );
   };
 
-  const emotionEmojis = {
+  const emotionEmojis: Record<TikoEmotion, string> = {
     greeting: '👋',
     cheering: '⭐',
     correct: '🎉',
     encourage: '❤️',
     thinking: '💡',
-    idle: '✨'
-  }[emotion];
+    idle: '✨',
+    happy: '😄',
+    celebrate: '🥳'
+  };
+
+  const currentEmoji = emotionEmojis[activeEmotion] || '✨';
 
   const sizeClasses = {
     sm: 'w-16 h-16 text-3xl',
@@ -77,7 +99,7 @@ export const TikoMascot: React.FC<TikoMascotProps> = ({
 
         {/* Emotion mini-badge on shoulder */}
         <span className="absolute -top-2 -right-2 text-xl bg-white rounded-full p-1 border-2 border-amber-300 shadow-sm animate-bounce" style={{ animationDuration: '2s' }}>
-          {emotionEmojis}
+          {currentEmoji}
         </span>
 
         {/* Name tag pill */}
@@ -98,7 +120,7 @@ export const TikoMascot: React.FC<TikoMascotProps> = ({
 
           <div className="flex items-center justify-between gap-2">
             <p className="font-bubble font-bold text-slate-800 leading-snug">
-              {message}
+              {displayMessage}
             </p>
             <div className="shrink-0 text-amber-500 hover:text-amber-600 bg-amber-100 p-1.5 rounded-xl">
               <Volume2 size={16} className={isSpeaking ? 'animate-bounce text-pink-500' : ''} />

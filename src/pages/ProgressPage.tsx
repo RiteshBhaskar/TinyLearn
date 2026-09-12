@@ -6,15 +6,9 @@ import { HINDI_LETTERS } from '../data/hindiData';
 import { TikoMascot } from '../components/common/TikoMascot';
 import { soundEffects } from '../utils/soundEffects';
 import {
-  Trophy,
   Sparkles,
   CheckCircle2,
   Lock,
-  ArrowRight,
-  BookOpen,
-  Hash,
-  Languages,
-  MapPin,
   Gift
 } from 'lucide-react';
 import { Badge, DailyGoal } from '../types';

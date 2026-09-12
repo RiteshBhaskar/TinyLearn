@@ -22,7 +22,7 @@ export const NumberGrid: React.FC<NumberGridProps> = ({ numbers, onSelectNumber 
   const { progress, markNumberLearned } = useApp();
   const [activeNumber, setActiveNumber] = useState<number | null>(null);
 
-  const handleCardClick = (index: number, num: NumberItem) => {
+  const handleCardClick = (num: NumberItem) => {
     setActiveNumber(num.number);
     soundEffects.playCountBeep(num.number);
     markNumberLearned(num.number);
@@ -45,7 +45,7 @@ export const NumberGrid: React.FC<NumberGridProps> = ({ numbers, onSelectNumber 
         return (
           <div
             key={item.id}
-            onClick={() => handleCardClick(index, item)}
+            onClick={() => handleCardClick(item)}
             className={`toy-block ${theme.blockClass} p-4 sm:p-5 flex flex-col items-center justify-between cursor-pointer text-center group ${
               isActive ? 'scale-110 -rotate-2 ring-6 ring-emerald-300' : ''
             }`}
