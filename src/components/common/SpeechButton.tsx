@@ -19,7 +19,6 @@ export const SpeechButton: React.FC<SpeechButtonProps> = ({
   text,
   lang = 'en',
   size = 'md',
-  variant = 'primary',
   label,
   className = '',
   onSpeakStart,

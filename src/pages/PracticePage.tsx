@@ -12,10 +12,7 @@ import {
   Volume2,
   RotateCcw,
   ChevronRight,
-  CheckCircle2,
-  Heart,
-  ArrowLeft,
-  Star
+  ArrowLeft
 } from 'lucide-react';
 
 type QuizCategory = 'english' | 'numbers' | 'hindi' | 'mixed';
@@ -49,7 +46,7 @@ export const PracticePage: React.FC = () => {
   // Quiz setup state
   const [inQuiz, setInQuiz] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<QuizCategory>('mixed');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<QuizDifficulty>('easy');
+  const [selectedDifficulty] = useState<QuizDifficulty>('easy');
 
   // Quiz play state
   const [questions, setQuestions] = useState<Question[]>([]);

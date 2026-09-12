@@ -4,7 +4,7 @@ import { soundEffects } from '../../utils/soundEffects';
 import { speechEngine } from '../../utils/speech';
 import { ConfettiCanvas } from '../common/ConfettiCanvas';
 import { TikoMascot } from '../common/TikoMascot';
-import { Sparkles, RefreshCw, Volume2, HelpCircle } from 'lucide-react';
+import { Sparkles, RefreshCw } from 'lucide-react';
 
 export const NumberSequenceGame: React.FC = () => {
   const { addStars } = useApp();

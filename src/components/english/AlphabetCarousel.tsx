@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EnglishLetter } from '../../types';
-import { ChevronLeft, ChevronRight, RotateCcw, CheckCircle2, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { SpeechButton } from '../common/SpeechButton';
 import { soundEffects } from '../../utils/soundEffects';
 import { useApp } from '../../context/AppContext';

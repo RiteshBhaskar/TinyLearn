@@ -5,7 +5,7 @@ import { soundEffects } from '../../utils/soundEffects';
 import { speechEngine } from '../../utils/speech';
 import { ConfettiCanvas } from '../common/ConfettiCanvas';
 import { TikoMascot } from '../common/TikoMascot';
-import { Volume2, Sparkles, RefreshCw } from 'lucide-react';
+import { Volume2, RefreshCw } from 'lucide-react';
 
 const TOY_OPTIONS_THEMES = ['toy-block-blue', 'toy-block-yellow', 'toy-block-pink', 'toy-block-green'];
 
